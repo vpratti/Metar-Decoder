@@ -17,14 +17,20 @@ namespace csharp_metar_display.metadata
             }
             else if (decodedMetar.Visibility?.PrevailingVisibility != null)
             {
+                var prevailingVisibility = decodedMetar.Visibility.PrevailingVisibility;
+                var statuteMiles = prevailingVisibility.GetConvertedValue(Value.Unit.StatuteMile);
+                // only US (statute mile) reports carry fractions; metric reports of a mile or more keep whole miles
+                if (prevailingVisibility.ActualUnit != Value.Unit.StatuteMile && statuteMiles >= 1)
+                {
+                    statuteMiles = (float)Math.Floor(statuteMiles);
+                }
                 visibility.Append(
                     StringTemplate.Format(
                         strings.PrevailingVisibility,
                         new
                         {  
-                            prevailingVisibility = decodedMetar.Visibility.PrevailingVisibility.GetConvertedValue(Value.Unit.StatuteMile) < 1 ?
-                                NumberToWords.ConvertFloatToText(decodedMetar.Visibility.PrevailingVisibility.GetConvertedValue(Value.Unit.StatuteMile)) :
-                                NumberToWords.ConvertToDigits((int)decodedMetar.Visibility.PrevailingVisibility.GetConvertedValue(Value.Unit.StatuteMile))
+                            prevailingVisibility = (decodedMetar.Visibility.LessThan ? "less than " : string.Empty) +
+                                NumberToWords.ConvertVisibilityToText(statuteMiles)
                         }, false));
             }
             Label = strings.VisibilityLabel; Message = visibility.ToString();

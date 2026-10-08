@@ -21,5 +21,10 @@
         /// No Direction Visibility
         /// </summary>
         public bool NDV { get; set; } = false;
+
+        /// <summary>
+        /// Prevailing visibility is less than the reported value (US "M" prefix, e.g. M1/4SM)
+        /// </summary>
+        public bool LessThan { get; set; } = false;
     }
 }

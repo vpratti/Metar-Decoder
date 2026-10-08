@@ -52,40 +52,62 @@ namespace csharp_metar_display.metadata
                 return words;
         }
 
+        /// <summary>
+        /// Converts a US statute-mile visibility (e.g. 1.25, 2.5, 0.0625, 10) into words,
+        /// keeping both the whole-mile part and the fractional part.
+        /// </summary>
+        public static string ConvertVisibilityToText(float statuteMiles)
+        {
+            // round to the nearest sixteenth, the smallest fraction used in US METARs
+            var sixteenths = (int)Math.Round(statuteMiles * 16);
+            var whole = sixteenths / 16;
+            var fraction = sixteenths % 16;
+
+            var words = whole > 0 ? ConvertToDigits(whole) : string.Empty;
+            if (fraction > 0)
+            {
+                if (whole > 0)
+                    words += "and ";
+                words += ConvertFloatToText(fraction / 16f);
+            }
+            return words == string.Empty ? "zero " : words;
+        }
+
         public static string ConvertFloatToText(float number)
         {
             string words = "";
 
-            switch (number)
+            // compare in sixteenths so values like 1/16 (0.0625) match reliably
+            switch ((int)Math.Round(number * 16))
             {
-                case 0.25f:
-                    words += "one-quarter ";
-                    break;
-                case 0.50f:
-                    words += "one-half ";
-                    break;
-                case 0.75f:
-                    words += "three-quarter ";
-                    break;
-                case 0.063f:
+                case 1:
                     words += "one-sixteenth ";
                     break;
-                case 0.125f:
+                case 2:
                     words += "one-eighth ";
                     break;
-                case 0.188f:
+                case 3:
                     words += "three-sixteenth ";
                     break;
-                case 0.313f:
+                case 4:
+                    words += "one-quarter ";
+                    break;
+                case 5:
                     words += "five-sixteenth ";
                     break;
-                case 0.375f:
+                case 6:
                     words += "three-eighth ";
                     break;
-                case 0.625f:
+                case 8:
+                    words += "one-half ";
+                    break;
+                case 10:
                     words += "five-eighth ";
                     break;
-                case 0.875f:
+                case 12:
+                    words += "three-quarter ";
+                    break;
+                case 14:
                     words += "seven-eighth ";
                     break;
             }

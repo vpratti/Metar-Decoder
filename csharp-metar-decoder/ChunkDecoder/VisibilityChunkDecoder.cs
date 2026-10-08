@@ -11,7 +11,7 @@ namespace csharp_metar_decoder.chunkdecoder
 
         private const string CavokRegexPattern = "CAVOK";
         private const string VisibilityRegexPattern = "([0-9]{4})(NDV)?";
-        private const string UsVisibilityRegexPattern = "M?([0-9]{0,2}) ?(([1357])/(2|4|8|16))?SM";
+        private const string UsVisibilityRegexPattern = "(M)?([0-9]{0,2}) ?(([1357])/(2|4|8|16))?SM";
         private const string MinimumVisibilityRegexPattern = "( ([0-9]{4})(N|NE|E|SE|S|SW|W|NW)?)?"; // optional
         private const string NoInfoRegexPattern = "////";
 
@@ -64,14 +64,14 @@ namespace csharp_metar_decoder.chunkdecoder
                     {
                         // us visibility
                         double visibilityValue = 0;
-                        if (!string.IsNullOrEmpty(found[7].Value))
+                        if (!string.IsNullOrEmpty(found[8].Value))
                         {
-                            visibilityValue += Convert.ToInt32(found[7].Value);
+                            visibilityValue += Convert.ToInt32(found[8].Value);
                         }
-                        if (!string.IsNullOrEmpty(found[9].Value) && !string.IsNullOrEmpty(found[10].Value))
+                        if (!string.IsNullOrEmpty(found[10].Value) && !string.IsNullOrEmpty(found[11].Value))
                         {
-                            var fractionTop = Convert.ToInt32(found[9].Value);
-                            var fractionBottom = Convert.ToInt32(found[10].Value);
+                            var fractionTop = Convert.ToInt32(found[10].Value);
+                            var fractionBottom = Convert.ToInt32(found[11].Value);
                             if (fractionBottom != 0)
                             {
                                 visibilityValue += (double)fractionTop / fractionBottom;
@@ -79,6 +79,7 @@ namespace csharp_metar_decoder.chunkdecoder
                         }
 
                         visibility.PrevailingVisibility = new Value(visibilityValue, Value.Unit.StatuteMile);
+                        visibility.LessThan = !string.IsNullOrEmpty(found[7].Value);
                     }
                 }
 
