@@ -1,0 +1,12 @@
+C:\Users\Venkata CTR Pratti\Documents\metar-decoder-display\csharp-metar-decoder\bin\Release\csharp-metar-decoder.dll
+C:\Users\Venkata CTR Pratti\Documents\metar-decoder-display\csharp-metar-decoder\bin\Release\csharp-metar-decoder.pdb
+C:\Users\Venkata CTR Pratti\Documents\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.csproj.AssemblyReference.cache
+C:\Users\Venkata CTR Pratti\Documents\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.csproj.CoreCompileInputs.cache
+C:\Users\Venkata CTR Pratti\Documents\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.dll
+C:\Users\Venkata CTR Pratti\Documents\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.pdb
+C:\Users\Venkata CTR Pratti\Documents\SourceCode\metar-decoder-display\csharp-metar-decoder\bin\Release\csharp-metar-decoder.dll
+C:\Users\Venkata CTR Pratti\Documents\SourceCode\metar-decoder-display\csharp-metar-decoder\bin\Release\csharp-metar-decoder.pdb
+C:\Users\Venkata CTR Pratti\Documents\SourceCode\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.csproj.AssemblyReference.cache
+C:\Users\Venkata CTR Pratti\Documents\SourceCode\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.csproj.CoreCompileInputs.cache
+C:\Users\Venkata CTR Pratti\Documents\SourceCode\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.dll
+C:\Users\Venkata CTR Pratti\Documents\SourceCode\metar-decoder-display\csharp-metar-decoder\obj\Release\csharp-metar-decoder.pdb
